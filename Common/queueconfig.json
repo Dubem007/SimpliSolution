@@ -1,0 +1,14 @@
+{
+  "QueueSettings": {
+    "AppName": "PrimusCommonLib",
+    "AppKey": "PrimusCommonLib",
+    "Encryption": {
+      "Key": "1234567890"
+    },
+    "QueueConfig": {
+      "QueueName": "SimplifiedUISvc_Queue",
+      "QueueConString": "amqp://guest:guest@localhost:15672/"
+    }
+    
+  }
+}

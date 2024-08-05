@@ -1,0 +1,26 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "api-gateway",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Api-Gateway",
+          "Version": "1.0",
+          "Url": "https://localhost:7221/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "auth",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "Auth.Services",
+          "Version": "1.0",
+          "Url": "https://localhost:7085/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}

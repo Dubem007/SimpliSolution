@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    container_name: ApiGateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+
+  authservice:
+    image: ${DOCKER_REGISTRY-}authservice
+    container_name: AuthService
+    build:
+      context: .
+      dockerfile: AuthService/Dockerfile

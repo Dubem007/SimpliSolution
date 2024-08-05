@@ -1,0 +1,47 @@
+trigger:
+  branches:
+    include:
+    - refs/heads/main
+
+name: Common-CI
+jobs:
+- job: Artifact_Build_and_Publish
+  displayName: BuildPublishJob
+  pool:
+    vmImage: ubuntu-latest
+  
+
+  steps:
+  - checkout: self
+    fetchDepth: 1
+
+  - task: DotNetCoreCLI@2
+    displayName: Packages Restore
+    inputs:
+      command: restore
+      projects: '**/*.csproj'
+
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      command: build
+      projects: '**/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
+      
+  - task: NuGetAuthenticate@1
+    displayName: NuGet Authenticate
+  - task: NuGetCommand@2
+    displayName: NuGet restore
+  - task: NuGetCommand@2
+    displayName: NuGet pack
+    inputs:
+      command: pack
+      packagesToPack: '**/*.csproj'
+      packDestination: '$(Build.ArtifactStagingDirectory)'
+      versioningScheme: byPrereleaseNumber
+  - task: NuGetCommand@2
+    displayName: NuGet push
+    inputs:
+      command: push
+      feedPublish: 975718e3-1a9f-42c3-8075-504ebc4c9604/03c442ce-357e-410d-9509-75e13a83ac48
+...
